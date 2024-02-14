@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/message")
+@RequestMapping("/api/messages")
 public class HelloWorldController {
 
 
@@ -37,6 +37,15 @@ public class HelloWorldController {
     public List<Message> addMessage(@RequestBody Message message){
         messages.add(message);
         return messages;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteMessage(@PathVariable String id){
+        for(Message message : messages){
+            if(message.getId().equals(id)){
+                messages.remove(message);
+            }
+        }
     }
 
 }
